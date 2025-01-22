@@ -3,9 +3,10 @@ import random
 
 def monte_carlo_pi(samples: int) -> float:
     inside = 0
+    rng = random.Random()
     for _ in range(samples):
-        x = random.random()
-        y = random.random()
+        x = rng.random()
+        y = rng.random()
         if (x**2 + y**2) < 1.0:
             inside += 1
     return 4.0 * inside / samples

@@ -1,6 +1,6 @@
 import random
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 
 
 def monte_carlo_pi(samples: int) -> float:
@@ -17,7 +17,7 @@ def monte_carlo_pi(samples: int) -> float:
 def parallel_monte_carlo(total_points: int, num_threads: int) -> float:
     points_per_thread = total_points // num_threads
 
-    with ThreadPoolExecutor() as executor:
+    with ProcessPoolExecutor() as executor:
         futures = [
             executor.submit(monte_carlo_pi, points_per_thread)
             for _ in range(num_threads)
